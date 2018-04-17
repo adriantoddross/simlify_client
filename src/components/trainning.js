@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
-import { fetchQuestionData } from "../actions/trainning"
+import { Redirect } from "react-router-dom"
+import { fetchQuestionData, sendAnswerData } from "../actions/trainning"
 import Input from "./input"
 import { Field, reduxForm, focus } from "redux-form"
 export class Trainning extends React.Component {
@@ -8,13 +9,24 @@ export class Trainning extends React.Component {
 		const { dispatch } = this.props
 		dispatch(fetchQuestionData())
 	}
-	onSubmit(values) {}
+	onSubmit(values) {
+		this.props.dispatch(sendAnswerData(values))
+	}
 	render() {
-		const { currentQuestion } = this.props
+		const { currentQuestion, feedback, authToken } = this.props
+		if (!authToken) {
+			return <Redirect to="/" />
+		}
 		if (!currentQuestion) return <div />
+		let renderFeedback
+		if (feedback) {
+			renderFeedback = <div>{feedback}</div>
+		}
+
 		return (
 			<div>
 				<div>{currentQuestion.question}</div>
+				{renderFeedback}
 				<form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
 					<label htmlFor="answer">Your Answer</label>
 					<Field type="text" name="answer" component={Input} />
@@ -26,7 +38,9 @@ export class Trainning extends React.Component {
 }
 const mapStateToProps = state => {
 	return {
-		currentQuestion: state.trainning.currentQuestion
+		currentQuestion: state.trainning.currentQuestion,
+		feedback: state.trainning.feedback,
+		authToken: state.auth.authToken
 	}
 }
 export default reduxForm({

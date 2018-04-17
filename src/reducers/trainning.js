@@ -1,10 +1,10 @@
-import { FETCH_QUESTION_SUCCESS, FETCH_QUESTION_ERROR } from "../actions/trainning"
+import { FETCH_QUESTION_SUCCESS, FETCH_QUESTION_ERROR, RECEIVE_FEEDBACK } from "../actions/trainning"
 
 const initialState = {
 	error: null,
 	currentQuestion: null,
 	userInput: null,
-	currentAnwser: null,
+	feedback: null,
 	reports: []
 }
 
@@ -18,6 +18,8 @@ export default function reducer(state = initialState, action) {
 		return Object.assign({}, state, {
 			error: action.error
 		})
+	} else if (action.type === RECEIVE_FEEDBACK) {
+		return { ...state, feedback: action.feedback }
 	}
 	return state
 }

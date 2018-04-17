@@ -31,3 +31,34 @@ export const fetchQuestionData = () => (dispatch, getState) => {
 	const question = { question: "SulSul" }
 	dispatch(fetchQuestionSuccess(question))
 }
+
+export const RECEIVE_FEEDBACK = "RECEIVE_FEEDBACK"
+export const receiveFeedBack = feedback => ({
+	type: RECEIVE_FEEDBACK,
+	feedback
+})
+
+export const sendAnswerData = answer => (dispatch, getState) => {
+	// 	const authToken = getState().auth.authToken
+	// 	return fetch(`${API_BASE_URL}/answer`, {
+	// 	method: "POST",
+	// 	headers: {
+	// 		// Provide our auth token as credentials
+	// 		Authorization: `Bearer ${authToken}`
+	// 	},
+	// 	body:JSON.stringify(answer)
+	// })
+	// 	.then(res => normalizeResponseErrors(res))
+	// 	.then(res => res.json())
+	// 	.then(feedback => {
+	// 		dispatch(receiveFeedBack(feedback))
+	// 	})
+	// 	.catch(err => {
+	// 		dispatch(fetchQuestionError(err))
+	// 	})
+
+	// return from server
+	const goodfeedback = "Good"
+	const badfeedback = "bad"
+	dispatch(receiveFeedBack(goodfeedback))
+}
