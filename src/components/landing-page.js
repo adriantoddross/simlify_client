@@ -8,7 +8,7 @@ import About from "./about"
 export class LandingPage extends React.Component {
 	render() {
 		if (this.props.loggedIn) {
-			return <Redirect to="/dashboard" />
+			return <Redirect to="/dashboard/:id" />
 		}
 		let showForm
 

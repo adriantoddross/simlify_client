@@ -1,18 +1,22 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Route, withRouter } from "react-router-dom"
-
+import { Route, withRouter, Switch } from "react-router-dom"
 import HeaderBar from "./header-bar"
 import LandingPage from "./landing-page"
 import Dashboard from "./dashboard"
+import NoMatch from "./nomatch"
 export class App extends React.Component {
 	render() {
 		return (
 			<div className="app">
 				<HeaderBar />
-				<Route exact path="/" component={LandingPage} />
-				<Route exact path="/:id/dashboard" component={Dashboard} />
-				{/* <Route exact path="/:id/trainning" component={Dashboard} /> */}
+
+				<Switch>
+					<Route exact path="/" component={LandingPage} />
+					<Route exact path="/dashboard/:id" component={Dashboard} />
+					{/* <Route exact path="/trainning/:id" component={Dashboard} /> */}
+					<Route component={NoMatch} />
+				</Switch>
 			</div>
 		)
 	}

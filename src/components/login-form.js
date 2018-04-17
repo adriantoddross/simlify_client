@@ -11,7 +11,7 @@ export class LoginForm extends React.Component {
 		const { dispatch, history } = this.props
 		return dispatch(login(values.username, values.password)).then(() => {
 			// todo: take userid then redirect to dashboard
-			history.push("/:id/dashboard")
+			history.push("/dashboard/:id")
 		})
 	}
 
