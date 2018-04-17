@@ -16,8 +16,8 @@ export class Trainning extends React.Component {
 			<div>
 				<div>{currentQuestion.question}</div>
 				<form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
-					<label htmlFor="userInput">Your Answer</label>
-					<Field type="text" name="userInput" component={Input} />
+					<label htmlFor="answer">Your Answer</label>
+					<Field type="text" name="answer" component={Input} />
 					<button>submit</button>
 				</form>
 			</div>
