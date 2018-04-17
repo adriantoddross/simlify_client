@@ -13,6 +13,9 @@ export const localRegister = user => dispatch => {
 	})
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
+		.then(user => {
+			console.log(users)
+		})
 		.catch(err => {
 			const { reason, message, location } = err
 			if (reason === "ValidationError") {
