@@ -12,8 +12,8 @@ const matchesPassword = matches("password")
 
 export class RegistrationForm extends React.Component {
 	onSubmit(values) {
-		const { username, password, firstName } = values
-		const user = { username, password, firstName }
+		const { username, password, firstname } = values
+		const user = { username, password, firstname }
 		return this.props.dispatch(localRegister(user)).then(() => this.props.dispatch(login(username, password)))
 	}
 
