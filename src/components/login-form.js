@@ -8,7 +8,7 @@ import { connect } from "react-redux"
 
 export class LoginForm extends React.Component {
 	onSubmit(values) {
-		const { dispatch, history, id } = this.props
+		const { dispatch } = this.props
 		return dispatch(login(values))
 	}
 
@@ -34,18 +34,7 @@ export class LoginForm extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
-	const { currentUser } = state.auth
-	if (currentUser) {
-		return {
-			id: currentUser.id
-		}
-	}
-	return {
-		id: null
-	}
-}
 export default reduxForm({
 	form: "login",
 	onSubmitFail: (errors, dispatch) => dispatch(focus("login", "username"))
-})(withRouter(connect(mapStateToProps)(LoginForm)))
+})(withRouter(connect()(LoginForm)))

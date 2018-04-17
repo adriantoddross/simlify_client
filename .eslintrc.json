@@ -4,7 +4,7 @@
 		"commonjs": true,
 		"es6": true
 	},
-	"extends": "create-react",
+	"extends": "react-app",
 	"parserOptions": {
 		"ecmaFeatures": {
 			"experimentalObjectRestSpread": true,
