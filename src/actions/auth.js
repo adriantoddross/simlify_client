@@ -22,9 +22,9 @@ export const authRequest = () => ({
 })
 
 export const AUTH_SUCCESS = "AUTH_SUCCESS"
-export const authSuccess = authToken => ({
+export const authSuccess = currentUser => ({
 	type: AUTH_SUCCESS,
-	authToken
+	currentUser
 })
 
 export const AUTH_ERROR = "AUTH_ERROR"
@@ -36,7 +36,6 @@ export const authError = error => ({
 // Stores the auth token in state and localStorage, and decodes and stores
 // the user data stored in the token
 const storeAuthInfo = (authToken, dispatch) => {
-	console.log("hi")
 	const decodedToken = jwtDecode(authToken)
 	dispatch(setAuthToken(authToken))
 	dispatch(authSuccess(decodedToken.user))
@@ -44,7 +43,6 @@ const storeAuthInfo = (authToken, dispatch) => {
 }
 
 export const login = data => dispatch => {
-	console.log(data)
 	dispatch(authRequest())
 	return (
 		fetch(`${API_BASE_URL}/auth/login`, {

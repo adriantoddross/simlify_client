@@ -4,15 +4,12 @@ import Input from "./input"
 import { login } from "../actions/auth"
 import { required, nonEmpty } from "../validators"
 import { withRouter } from "react-router-dom"
+import { connect } from "react-redux"
 
 export class LoginForm extends React.Component {
 	onSubmit(values) {
-		console.log(values)
-		const { dispatch, history } = this.props
-		return dispatch(login(values.username, values.password)).then(() => {
-			// todo: take userid then redirect to dashboard
-			history.push("/dashboard/:id")
-		})
+		const { dispatch, history, id } = this.props
+		return dispatch(login(values))
 	}
 
 	render() {
@@ -37,7 +34,18 @@ export class LoginForm extends React.Component {
 	}
 }
 
+const mapStateToProps = state => {
+	const { currentUser } = state.auth
+	if (currentUser) {
+		return {
+			id: currentUser.id
+		}
+	}
+	return {
+		id: null
+	}
+}
 export default reduxForm({
 	form: "login",
 	onSubmitFail: (errors, dispatch) => dispatch(focus("login", "username"))
-})(withRouter(LoginForm))
+})(withRouter(connect(mapStateToProps)(LoginForm)))

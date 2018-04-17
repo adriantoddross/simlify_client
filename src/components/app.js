@@ -5,6 +5,7 @@ import HeaderBar from "./header-bar"
 import LandingPage from "./landing-page"
 import Dashboard from "./dashboard"
 import NoMatch from "./nomatch"
+import Trainning from "./trainning"
 export class App extends React.Component {
 	render() {
 		return (
@@ -14,7 +15,7 @@ export class App extends React.Component {
 				<Switch>
 					<Route exact path="/" component={LandingPage} />
 					<Route exact path="/dashboard/:id" component={Dashboard} />
-					{/* <Route exact path="/trainning/:id" component={Dashboard} /> */}
+					<Route exact path="/trainning/:id" component={Trainning} />
 					<Route component={NoMatch} />
 				</Switch>
 			</div>

@@ -8,7 +8,7 @@ import About from "./about"
 export class LandingPage extends React.Component {
 	render() {
 		if (this.props.loggedIn) {
-			return <Redirect to="/dashboard/:id" />
+			return <Redirect to={`/dashboard/${this.props.id}`} />
 		}
 		let showForm
 
@@ -31,7 +31,8 @@ export class LandingPage extends React.Component {
 
 const mapStateToProps = state => ({
 	loggedIn: state.auth.currentUser !== null,
-	currentTab: state.control.currentTab
+	currentTab: state.control.currentTab,
+	id: state.auth.currentUser ? state.auth.currentUser.id : null
 })
 
 export default connect(mapStateToProps)(LandingPage)

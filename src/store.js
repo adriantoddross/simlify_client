@@ -6,7 +6,7 @@ import authReducer from "./reducers/auth"
 import trainningReducer from "./reducers/trainning"
 import controlReducer from "./reducers/control"
 import { setAuthToken, refreshAuthToken } from "./actions/auth"
-
+import { composeWithDevTools } from "redux-devtools-extension"
 const store = createStore(
 	combineReducers({
 		form: formReducer,
@@ -14,7 +14,10 @@ const store = createStore(
 		trainning: trainningReducer,
 		control: controlReducer
 	}),
-	applyMiddleware(thunk)
+	composeWithDevTools(
+		applyMiddleware(thunk)
+		// other store enhancers if any
+	)
 )
 
 // Hydrate the authToken from localStorage if it exist

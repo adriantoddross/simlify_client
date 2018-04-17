@@ -15,7 +15,7 @@ export const fetchQuestionError = error => ({
 
 export const fetchQuestionData = () => (dispatch, getState) => {
 	const authToken = getState().auth.authToken
-	return fetch(`${API_BASE_URL}/:id/trainning`, {
+	return fetch(`${API_BASE_URL}/question`, {
 		method: "GET",
 		headers: {
 			// Provide our auth token as credentials
