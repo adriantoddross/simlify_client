@@ -36,6 +36,7 @@ export const authError = error => ({
 // Stores the auth token in state and localStorage, and decodes and stores
 // the user data stored in the token
 const storeAuthInfo = (authToken, dispatch) => {
+	console.log("hi")
 	const decodedToken = jwtDecode(authToken)
 	dispatch(setAuthToken(authToken))
 	dispatch(authSuccess(decodedToken.user))
@@ -43,6 +44,7 @@ const storeAuthInfo = (authToken, dispatch) => {
 }
 
 export const login = data => dispatch => {
+	console.log(data)
 	dispatch(authRequest())
 	return (
 		fetch(`${API_BASE_URL}/auth/login`, {
@@ -50,9 +52,7 @@ export const login = data => dispatch => {
 			headers: {
 				"Content-Type": "application/json"
 			},
-			body: JSON.stringify({
-				data
-			})
+			body: JSON.stringify(data)
 		})
 			// Reject any requests which don't return a 200 status, creating
 			// errors which follow a consistent format

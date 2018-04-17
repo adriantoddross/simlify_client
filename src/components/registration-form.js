@@ -14,7 +14,7 @@ export class RegistrationForm extends React.Component {
 	onSubmit(values) {
 		const { username, password, firstname } = values
 		const user = { username, password, firstname }
-		return this.props.dispatch(localRegister(user)).then(() => this.props.dispatch(login(username, password)))
+		return this.props.dispatch(localRegister(user))
 	}
 
 	handleLoginCLick() {
@@ -25,7 +25,7 @@ export class RegistrationForm extends React.Component {
 		return (
 			<form className="login-form" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
 				<label htmlFor="firstName">First name</label>
-				<Field component={Input} type="text" name="firstName" />
+				<Field component={Input} type="text" name="firstname" />
 				<label htmlFor="username">Username</label>
 				<Field component={Input} type="text" name="username" validate={[required, nonEmpty, isTrimmed]} />
 				<label htmlFor="password">Password</label>
