@@ -12,6 +12,10 @@ export class Trainning extends React.Component {
 	onSubmit(values) {
 		this.props.dispatch(sendAnswerData(values))
 	}
+	handleNextQuestion() {
+		this.props.dispatch(fetchQuestionData())
+	}
+
 	render() {
 		const { currentQuestion, feedback, authToken } = this.props
 		if (!authToken) {
@@ -30,7 +34,12 @@ export class Trainning extends React.Component {
 				<form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
 					<label htmlFor="answer">Your Answer</label>
 					<Field type="text" name="answer" component={Input} />
-					<button>submit</button>
+					<button disabled={this.props.next} type="submit">
+						submit
+					</button>
+					<button disabled={!this.props.next} onClick={() => this.handleNextQuestion()}>
+						next
+					</button>
 				</form>
 			</div>
 		)
@@ -40,7 +49,8 @@ const mapStateToProps = state => {
 	return {
 		currentQuestion: state.trainning.currentQuestion,
 		feedback: state.trainning.feedback,
-		authToken: state.auth.authToken
+		authToken: state.auth.authToken,
+		next: state.trainning.next
 	}
 }
 export default reduxForm({
