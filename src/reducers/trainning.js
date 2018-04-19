@@ -1,4 +1,4 @@
-import { FETCH_QUESTION_REQUEST, FETCH_QUESTION_SUCCESS, FETCH_QUESTION_ERROR, RECEIVE_FEEDBACK, GENERATE_QUESTIONS_REQUEST, GENERATE_QUESTIONS_SUCCESS, GENERATE_QUESTIONS_ERROR, SUBMIT_ANSWER_REQUEST, SUBMIT_ANSWER_SUCCESS, SUBMIT_ANSWER_ERROR } from "../actions/trainning"
+import { FETCH_QUESTION_REQUEST, FETCH_QUESTION_SUCCESS, FETCH_QUESTION_ERROR, GENERATE_QUESTIONS_REQUEST, GENERATE_QUESTIONS_SUCCESS, GENERATE_QUESTIONS_ERROR, SUBMIT_ANSWER_REQUEST, SUBMIT_ANSWER_SUCCESS, SUBMIT_ANSWER_ERROR } from "../actions/trainning"
 
 const initialState = {
 	name: null,
@@ -19,8 +19,6 @@ export default function trainingReducer(state=initialState, action) {
 	case FETCH_QUESTION_SUCCESS : return Object.assign({}, state, {currentQuestion: action.question, error: null, loading: false, next: false});
 
 	case FETCH_QUESTION_ERROR : return Object.assign({}, state, {loading: false, error: action.error});
-
-	case RECEIVE_FEEDBACK : return { ...state, feedback: action.feedback, next: true };
 
 	case GENERATE_QUESTIONS_REQUEST : return Object.assign({}, state, {loading: true});
 
