@@ -1,19 +1,19 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
-import { fetchQuestionData, sendAnswerData } from "../actions/trainning"
+import { fetchQuestion, sendAnswerData } from "../actions/trainning"
 import Input from "./input"
 import { Field, reduxForm, focus } from "redux-form"
 export class Trainning extends React.Component {
 	componentDidMount() {
 		const { dispatch } = this.props
-		dispatch(fetchQuestionData())
+		dispatch(fetchQuestion())
 	}
 	onSubmit(values) {
 		this.props.dispatch(sendAnswerData(values))
 	}
-	handleNextQuestion() {
-		this.props.dispatch(fetchQuestionData())
+	fetchNextQuestion() {
+		this.props.dispatch(fetchQuestion())
 	}
 
 	render() {
@@ -29,7 +29,9 @@ export class Trainning extends React.Component {
 
 		return (
 			<div>
-				<div>{currentQuestion.question}</div>
+				<div>
+					<h1>{currentQuestion.question}</h1>
+				</div>
 				{renderFeedback}
 				<form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
 					<label htmlFor="answer">Your Answer</label>
@@ -37,7 +39,7 @@ export class Trainning extends React.Component {
 					<button disabled={this.props.next} type="submit">
 						submit
 					</button>
-					<button disabled={!this.props.next} onClick={() => this.handleNextQuestion()}>
+					<button disabled={!this.props.next} onClick={() => this.fetchNextQuestion()}>
 						next
 					</button>
 				</form>
