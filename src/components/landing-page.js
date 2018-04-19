@@ -2,20 +2,17 @@ import React from "react"
 import Dialog from 'material-ui/Dialog';
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
+import { closeDialog}  from '../actions/control';
 import LoginForm from "./login-form"
 import RegistrationForm from "./registration-form"
 import About from "./about"
 
 export class LandingPage extends React.Component {
-	constructor(props){
-		super(props)
-		this.state = {open: false}
-
-	}
 
 	handleCloseDialog() {
 		// dispatch dialog state from true to false
 		console.log('closing...');
+		this.props.dispatch(closeDialog())
 	}
 
 	render() {
@@ -34,7 +31,7 @@ export class LandingPage extends React.Component {
 		}
 		return (
 			<div>
-				<Dialog title="" modal={false} open={this.props.dialog} onRequestClose={this.handleCloseDialog}>
+				<Dialog title="" modal={false} open={this.props.dialog} onRequestClose={() => this.handleCloseDialog()}>
 					{showForm}
 				</Dialog>
 				<About openDialog={() => this.setState({open: true})}/>
