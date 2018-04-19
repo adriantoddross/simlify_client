@@ -1,6 +1,7 @@
 import { FETCH_QUESTION_SUCCESS, FETCH_QUESTION_ERROR, RECEIVE_FEEDBACK, GENERATE_QUESTIONS_REQUEST, GENERATE_QUESTIONS_SUCCESS, GENERATE_QUESTIONS_ERROR } from "../actions/trainning"
 
 const initialState = {
+	name: null,
 	loading: null,
 	error: null,
 	next: false,
