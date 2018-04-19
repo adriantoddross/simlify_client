@@ -16,7 +16,7 @@ export class RegistrationForm extends React.Component {
 		return this.props.dispatch(localRegister(user))
 	}
 
-	handleLoginCLick() {
+	handleLoginClick() {
 		this.props.dispatch(openLogin())
 	}
 
@@ -39,9 +39,9 @@ export class RegistrationForm extends React.Component {
 				<button type="submit" disabled={this.props.pristine || this.props.submitting}>
 					Register
 				</button>
-				<Link to="/" onClick={() => this.handleLoginClick()}>
+				<button onClick={() => this.handleLoginClick()}>
 					Login
-				</Link>
+				</button>
 			</form>
 		)
 	}

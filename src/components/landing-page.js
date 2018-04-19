@@ -1,4 +1,5 @@
 import React from "react"
+import Dialog from 'material-ui/Dialog';
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import LoginForm from "./login-form"
@@ -6,7 +7,17 @@ import RegistrationForm from "./registration-form"
 import About from "./about"
 
 export class LandingPage extends React.Component {
+	constructor(props){
+		super(props)
+		this.state = {open: false}
+	}
+
+	handleCloseDialog() {
+		// dispatch dialog state from true to false
+	}
+
 	render() {
+
 		if (this.props.loggedIn) {
 			return <Redirect to={`/dashboard/${this.props.id}`} />
 		}
@@ -21,9 +32,11 @@ export class LandingPage extends React.Component {
 		}
 		return (
 			<div>
-				<About />
+				<Dialog title="" modal={false} open={this.props.dialog} onRequestClose={}>
+					{showForm}
+				</Dialog>
+				<About openDialog={() => this.setState({open: true})}/>
 				{/* todo: Need to have a Overlay Component when currentTab is either signup or login */}
-				<div>{showForm}</div>
 			</div>
 		)
 	}
@@ -32,7 +45,8 @@ export class LandingPage extends React.Component {
 const mapStateToProps = state => ({
 	loggedIn: state.user.currentUser !== null,
 	currentTab: state.control.currentTab,
-	id: state.user.currentUser ? state.user.currentUser.id : null
+	id: state.user.currentUser ? state.user.currentUser.id : null,
+	dialog: state.control.dialog
 })
 
 export default connect(mapStateToProps)(LandingPage)

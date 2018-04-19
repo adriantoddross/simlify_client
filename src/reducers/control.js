@@ -1,7 +1,8 @@
-import { OPEN_SIGN_UP, OPEN_LOGIN } from "../actions/control"
+import { OPEN_SIGN_UP, OPEN_LOGIN, OPEN_DIALOG} from "../actions/control"
 
 const initialState = {
-	currentTab: null
+	currentTab: null,
+	dialog: false
 }
 
 export default function controlReducer(state = initialState, action) {
@@ -12,5 +13,10 @@ export default function controlReducer(state = initialState, action) {
 	if (action.type === OPEN_LOGIN) {
 		return { ...state, currentTab: "login" }
 	}
+	if (action.type === OPEN_DIALOG) {
+		return { ...state, dialog: true  }
+	}
+
+
 	return state
 }

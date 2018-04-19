@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { clearAuth } from "../actions/auth"
 import { clearAuthToken } from "../local-storage"
 import Brand from "./brand"
-import { openLogin, openSignUp } from "../actions/control"
+import { openLogin, openSignUp, openDialog } from "../actions/control"
 export class HeaderBar extends React.Component {
 	logOut() {
 		this.props.dispatch(clearAuth())
@@ -11,10 +11,12 @@ export class HeaderBar extends React.Component {
 	}
 	signUp() {
 		// todo: signup data flow
+		this.props.dispatch(openDialog());
 		this.props.dispatch(openSignUp())
 	}
 	logIn(data) {
 		//todo: log in data flow
+		this.props.dispatch(openDialog());
 		this.props.dispatch(openLogin())
 	}
 
