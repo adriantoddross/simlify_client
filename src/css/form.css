@@ -13,8 +13,19 @@
 
 }
 
+.form-warning {
+  /* font-size: 25% */
+  color: red;
+}
+
+.form-error {
+  padding-bottom: 10px;
+  color: red;
+  font-size: 75%;
+}
+
 .login-form label {
-  display: block;
+  display: inline-block;
   font-weight: bold;
   padding-bottom: 1%;
   text-align: left;
@@ -25,4 +36,8 @@
   border: 2px solid darkgrey;
   width: 100%;
   padding: 15px;
+}
+
+::placeholder {
+  color: lightgray;
 }
