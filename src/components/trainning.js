@@ -30,7 +30,7 @@ export class Trainning extends React.Component {
 		return (
 			<div>
 				<div>
-					<h1>{currentQuestion.question}</h1>
+					<h1>What does {currentQuestion.question} mean?</h1>
 				</div>
 				{renderFeedback}
 				<form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
