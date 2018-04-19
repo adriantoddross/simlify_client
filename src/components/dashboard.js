@@ -1,5 +1,6 @@
 import React from "react"
 import requiresLogin from "./requires-login"
+import { Preview } from './preview';
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { generateQuestions} from "../actions/trainning"
