@@ -10,8 +10,18 @@ export class Trainning extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			open: true
+			open: false
 		}
+	}
+	handleOpen() {
+		this.setState({
+			open: true
+		})
+	}
+	handleClose() {
+		this.setState({
+			open: false
+		})
 	}
 	componentDidMount() {
 		const { dispatch } = this.props
@@ -20,22 +30,30 @@ export class Trainning extends React.Component {
 	onSubmit(values) {
 		this.props.dispatch(submitAnswer(values))
 	}
-	fetchNextQuestion() {
+	fetchNextQuestion(e) {
+		e.preventDefault()
 		this.props.dispatch(fetchQuestion())
 	}
-	handleFetchReport() {
+	handleFetchReport(e) {
+		e.preventDefault()
+		this.handleOpen()
 		this.props.dispatch(fetchReport())
 	}
 
 	render() {
 		const { currentQuestion, feedback, authToken } = this.props
+
 		if (!authToken) {
 			return <Redirect to="/" />
 		}
 		if (!currentQuestion) return <div />
 		let renderFeedback
 		if (feedback) {
-			renderFeedback = <p>{feedback}</p>
+			if (feedback.status === "good") {
+				renderFeedback = <p />
+			} else {
+				renderFeedback = <p />
+			}
 		}
 
 		return (
@@ -50,15 +68,15 @@ export class Trainning extends React.Component {
 					<button disabled={this.props.next} type="submit">
 						Submit Answer
 					</button>
-					<button disabled={!this.props.next} onClick={() => this.fetchNextQuestion()}>
+					<button disabled={!this.props.next} onClick={e => this.fetchNextQuestion(e)}>
 						Next Question
 					</button>
-					<button onClick={() => this.handleFetchReport()}>End session</button>
+					<button onClick={e => this.handleFetchReport(e)}>End session</button>
 				</form>
 				<Dialog title="Dialog With Actions" modal={true} open={this.state.open}>
 					<Report />
 					<div>
-						<button>Start new session</button>
+						<button onClick={e => this.handleClose()}>Start new session</button>
 					</div>
 				</Dialog>
 			</div>

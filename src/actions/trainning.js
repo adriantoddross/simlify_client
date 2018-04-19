@@ -99,7 +99,6 @@ export const submitAnswerError = error => ({
 
 export const submitAnswer = answer => (dispatch, getState) => {
 	const authToken = getState().user.authToken
-	console.log(answer)
 	dispatch(submitAnswerSuccess)
 	return fetch(`${API_BASE_URL}/simlish/answer`, {
 		method: "POST",
@@ -113,7 +112,6 @@ export const submitAnswer = answer => (dispatch, getState) => {
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
 		.then(feedback => {
-			console.log(feedback)
 			dispatch(submitAnswerSuccess(feedback))
 		})
 		.catch(err => {
@@ -123,22 +121,22 @@ export const submitAnswer = answer => (dispatch, getState) => {
 
 // fetch report
 
-// export const SUBMIT_ANSWER_REQUEST = "SUBMIT_ANSWER_REQUEST"
-// export const submitAnswerRequest = () => ({
-// 	type: SUBMIT_ANSWER_REQUEST,
-// });
+export const FETCH_REPORT_REQUEST = "FETCH_REPORT_REQUEST"
+export const fetch_report_request = () => ({
+	type: FETCH_REPORT_REQUEST
+})
 
-// export const SUBMIT_ANSWER_SUCCESS = "SUBMIT_ANSWER_SUCCESS"
-// export const submitAnswerSuccess = feedback => ({
-// 	type: SUBMIT_ANSWER_SUCCESS,
-// 	feedback
-// });
+export const FETCH_REPORT_SUCCESS = "FETCH_REPORT_SUCCESS"
+export const fetchReportSuccess = report => ({
+	type: FETCH_REPORT_SUCCESS,
+	report
+})
 
-// export const SUBMIT_ANSWER_ERROR = "SUBMIT_ANSWER_ERROR"
-// export const submitAnswerError = error => ({
-// 	type: SUBMIT_ANSWER_ERROR,
-// 	error
-// });
+export const FETCH_REPORT_ERROR = "FETCH_REPORT_ERROR"
+export const fetchReportError = error => ({
+	type: FETCH_REPORT_ERROR,
+	error
+})
 
 export const fetchReport = () => (dispatch, getState) => {
 	const authToken = getState().user.authToken
@@ -153,9 +151,9 @@ export const fetchReport = () => (dispatch, getState) => {
 		.then(res => normalizeResponseErrors(res))
 		.then(res => res.json())
 		.then(report => {
-			console.log(report)
+			return dispatch(fetchReportSuccess(report))
 		})
 		.catch(err => {
-			dispatch(submitAnswerError(err))
+			dispatch(fetchReportError(err))
 		})
 }

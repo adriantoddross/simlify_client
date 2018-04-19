@@ -7,7 +7,10 @@ import {
 	GENERATE_QUESTIONS_ERROR,
 	SUBMIT_ANSWER_REQUEST,
 	SUBMIT_ANSWER_SUCCESS,
-	SUBMIT_ANSWER_ERROR
+	SUBMIT_ANSWER_ERROR,
+	FETCH_REPORT_REQUEST,
+	FETCH_REPORT_SUCCESS,
+	FETCH_REPORT_ERROR
 } from "../actions/trainning"
 
 const initialState = {
@@ -15,7 +18,8 @@ const initialState = {
 	currentQuestion: null,
 	feedback: null,
 	loading: null,
-	error: null
+	error: null,
+	report: null
 }
 
 export default function trainingReducer(state = initialState, action) {
@@ -52,7 +56,13 @@ export default function trainingReducer(state = initialState, action) {
 
 	case SUBMIT_ANSWER_ERROR:
 		return Object.assign({}, state, { loading: false, error: action.error })
-
+	case FETCH_REPORT_REQUEST:
+		return Object.assign({}, state, { loading: true })
+	case FETCH_REPORT_SUCCESS: {
+		return Object.assign({}, state, { report: action.report, loading: false, error: action.error })
+	}
+	case FETCH_REPORT_ERROR:
+		return Object.assign({}, state, { report: null, loading: false, error: action.error })
 	default:
 		return state
 	}
