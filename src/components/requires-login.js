@@ -5,7 +5,6 @@ import NoMatch from "./nomatch"
 export default () => Component => {
 	function RequiresLogin(props) {
 		const { authenticating, loggedIn, error, id, match, ...passThroughProps } = props
-		console.log(match.params)
 		if (authenticating) {
 			return <div>Logging in...</div>
 		} else if (!loggedIn || error) {

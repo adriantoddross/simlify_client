@@ -69,7 +69,6 @@ export const fetchQuestion = () => (dispatch, getState) => {
 		.then(res => {return normalizeResponseErrors(res);})
 		.then(res => res.json())
 		.then((question) => {
-			console.log(question);
 			dispatch(fetchQuestionSuccess(question));
 		})
 		.catch(err => {
