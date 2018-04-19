@@ -11,7 +11,7 @@ const initialState = {
 	reports: []
 }
 
-export default function reducer(state=initialState, action) {
+export default function trainingReducer(state=initialState, action) {
 	switch (action.type) {
 
 	case FETCH_QUESTION_SUCCESS : return Object.assign({}, state, {currentQuestion: action.data, error: null, loading: false, next: false});
@@ -24,7 +24,7 @@ export default function reducer(state=initialState, action) {
 
 	case GENERATE_QUESTIONS_SUCCESS : return Object.assign({}, state, {loading: false});
 
-	case GENERATE_QUESTIONS_ERROR : return Object.assign({}, state, {loading: false,error: action.error});
+	case GENERATE_QUESTIONS_ERROR : return Object.assign({}, state, {loading: false, error: action.error});
 
 	default : return state;
 	}
