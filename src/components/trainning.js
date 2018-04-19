@@ -51,7 +51,7 @@ const mapStateToProps = state => {
 	return {
 		currentQuestion: state.trainning.currentQuestion,
 		feedback: state.trainning.feedback,
-		authToken: state.auth.authToken,
+		authToken: state.user.authToken,
 		next: state.trainning.next
 	}
 }

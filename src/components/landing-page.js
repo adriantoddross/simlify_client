@@ -30,9 +30,9 @@ export class LandingPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	loggedIn: state.auth.currentUser !== null,
+	loggedIn: state.user.currentUser !== null,
 	currentTab: state.control.currentTab,
-	id: state.auth.currentUser ? state.auth.currentUser.id : null
+	id: state.user.currentUser ? state.user.currentUser.id : null
 })
 
 export default connect(mapStateToProps)(LandingPage)

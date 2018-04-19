@@ -1,6 +1,7 @@
 import { API_BASE_URL } from "../config"
 import { normalizeResponseErrors } from "./utils"
 
+
 export const GENERATE_QUESTIONS_REQUEST = "GENERATE_QUESTIONS_REQUEST"
 export const generateQuestionsRequest = () => ({
 	type: GENERATE_QUESTIONS_REQUEST,
@@ -18,7 +19,7 @@ export const generateQuestionsError = error => ({
 });
 
 export const generateQuestions = () => (dispatch, getState) => {
-	const authToken = getState().auth.authToken
+	const authToken = getState().user.authToken
 	dispatch(generateQuestionsRequest);
 	return fetch(`${API_BASE_URL}/simlish/generate`, {
 		method: "GET",
@@ -58,7 +59,7 @@ export const fetchQuestionError = error => ({
 })
 
 export const fetchQuestion = () => (dispatch, getState) => {
-	const authToken = getState().auth.authToken
+	const authToken = getState().user.authToken
 	dispatch(fetchQuestionRequest());
 	return fetch(`${API_BASE_URL}/simlish/question`, {
 		method: "GET",
@@ -95,7 +96,7 @@ export const submitAnswerError = error => ({
 });
 
 export const submitAnswer = answer => (dispatch, getState) => {
-	const authToken = getState().auth.authToken
+	const authToken = getState().user.authToken
 	dispatch(submitAnswerSuccess);
 	return fetch(`${API_BASE_URL}/simlish/answer`, {
 		method: "POST",

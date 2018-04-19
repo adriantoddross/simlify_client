@@ -74,7 +74,7 @@ export const login = data => dispatch => {
 
 export const refreshAuthToken = () => (dispatch, getState) => {
 	dispatch(authRequest())
-	const authToken = getState().auth.authToken
+	const authToken = getState().user.authToken
 	return fetch(`${API_BASE_URL}/auth/refresh`, {
 		method: "POST",
 		headers: {
