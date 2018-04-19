@@ -62,3 +62,39 @@ export const sendAnswerData = answer => (dispatch, getState) => {
 	const badfeedback = "bad"
 	dispatch(receiveFeedBack(goodfeedback))
 }
+
+
+export const GENERATE_QUESTIONS_REQUEST = "GENERATE_QUESTIONS_REQUEST"
+export const generateQuestionsRequest = () => ({
+	type: FETCH_QUESTION_SUCCESS,
+});
+
+export const GENERATE_QUESTIONS_SUCCESS = "GENERATE_QUESTIONS_SUCCESS"
+export const generateQuestionsSuccess = () => ({
+	type: FETCH_QUESTION_SUCCESS,
+});
+
+export const GENERATE_QUESTIONS_ERROR = "GENERATE_QUESTIONS_ERROR"
+export const generateQuestionsError = error => ({
+	type: FETCH_QUESTION_SUCCESS,
+	error
+});
+
+export const generateQuestions = () => (dispatch, getState) => {
+	const authToken = getState().auth.authToken
+	dispatch(generateQuestionsRequest);
+	return fetch(`${API_BASE_URL}/simlish/question`, {
+		method: "GET",
+		headers: {
+			// Provide our auth token as credentials
+			Authorization: `Bearer ${authToken}`
+		}
+	})
+		.then(res => res.json())
+		.then(() => {
+			dispatch(generateQuestionsSuccess());
+		})
+		.catch(err => {
+			dispatch(generateQuestionsError(err))
+		})
+}
