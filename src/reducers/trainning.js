@@ -2,13 +2,11 @@ import { FETCH_QUESTION_REQUEST, FETCH_QUESTION_SUCCESS, FETCH_QUESTION_ERROR, G
 
 const initialState = {
 	name: null,
-	loading: null,
-	error: null,
 	next: false,
 	currentQuestion: null,
-	userInput: null,
 	feedback: null,
-	reports: []
+	loading: null,
+	error: null,
 }
 
 export default function trainingReducer(state=initialState, action) {
