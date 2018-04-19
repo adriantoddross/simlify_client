@@ -97,7 +97,7 @@ export const submitAnswerError = error => ({
 export const submitAnswer = answer => (dispatch, getState) => {
 	const authToken = getState().auth.authToken
 	dispatch(submitAnswerSuccess);
-	return fetch(`${API_BASE_URL}simlish/answer`, {
+	return fetch(`${API_BASE_URL}/simlish/answer`, {
 		method: "POST",
 		headers: {
 			// Provide our auth token as credentials
