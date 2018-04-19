@@ -1,6 +1,7 @@
-import { FETCH_QUESTION_SUCCESS, FETCH_QUESTION_ERROR, RECEIVE_FEEDBACK } from "../actions/trainning"
+import { FETCH_QUESTION_SUCCESS, FETCH_QUESTION_ERROR, RECEIVE_FEEDBACK, GENERATE_QUESTIONS_REQUEST, GENERATE_QUESTIONS_SUCCESS, GENERATE_QUESTIONS_ERROR } from "../actions/trainning"
 
 const initialState = {
+	loading: null;
 	error: null,
 	next: false,
 	currentQuestion: null,
@@ -9,19 +10,22 @@ const initialState = {
 	reports: []
 }
 
-export default function reducer(state = initialState, action) {
-	if (action.type === FETCH_QUESTION_SUCCESS) {
-		return Object.assign({}, state, {
-			currentQuestion: action.data,
-			error: null,
-			next: false
-		})
-	} else if (action.type === FETCH_QUESTION_ERROR) {
-		return Object.assign({}, state, {
-			error: action.error
-		})
-	} else if (action.type === RECEIVE_FEEDBACK) {
-		return { ...state, feedback: action.feedback, next: true }
+export default function reducer(state=initialState, action) {
+	switch (action.type) {
+
+	case 'FETCH_QUESTION_SUCCESS' : return Object.assign({}, state, {currentQuestion: action.data, error: null, loading: false, next: false});
+
+	case 'FETCH_QUESTION_ERROR' : return Object.assign({}, state, {loading: false, error: action.error});
+
+	case 'RECEIVE_FEEDBACK' : return { ...state, feedback: action.feedback, next: true };
+
+	case 'GENERATE_QUESTIONS_REQUEST' : return Object.assign({}, state, {loading: true});
+
+	case 'GENERATE_QUESTIONS_REQUEST' : return Object.assign({}, state, {loading: false});
+
+	case 'GENERATE_QUESTIONS_ERROR' : return Object.assign({}, state, {loading: false,error: action.error});
+
+	default : return state;
 	}
-	return state
-}
+
+};
