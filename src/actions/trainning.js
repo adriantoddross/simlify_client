@@ -106,8 +106,8 @@ export const submitAnswer = answer => (dispatch, getState) => {
 		},
 		body:JSON.stringify(answer)
 	})
-		.then(res => {return normalizeResponseErrors(res);})
-		.then(res => {return res.json(res);})
+		.then(res => normalizeResponseErrors(res))
+		.then(res => res.json())
 		.then(feedback => {
 			console.log(feedback);
 			dispatch(submitAnswerSuccess(feedback));
