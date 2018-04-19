@@ -1,6 +1,43 @@
 import { API_BASE_URL } from "../config"
 import { normalizeResponseErrors } from "./utils"
 
+export const GENERATE_QUESTIONS_REQUEST = "GENERATE_QUESTIONS_REQUEST"
+export const generateQuestionsRequest = () => ({
+	type: GENERATE_QUESTIONS_REQUEST,
+});
+
+export const GENERATE_QUESTIONS_SUCCESS = "GENERATE_QUESTIONS_SUCCESS"
+export const generateQuestionsSuccess = () => ({
+	type: GENERATE_QUESTIONS_SUCCESS,
+});
+
+export const GENERATE_QUESTIONS_ERROR = "GENERATE_QUESTIONS_ERROR"
+export const generateQuestionsError = error => ({
+	type: GENERATE_QUESTIONS_ERROR,
+	error
+});
+
+export const generateQuestions = () => (dispatch, getState) => {
+	const authToken = getState().auth.authToken
+	dispatch(generateQuestionsRequest);
+	return fetch(`${API_BASE_URL}/simlish/generate`, {
+		method: "GET",
+		headers: {
+			Authorization: `Bearer ${authToken}`
+		}
+	})
+		.then(res => {
+			return normalizeResponseErrors(res)})
+		.then(res => {
+			return res.json(res)})
+		.then((res) => {
+			console.info('Successfully generated questions:', res);
+			dispatch(generateQuestionsSuccess());
+		})
+		.catch(err => {
+			dispatch(generateQuestionsError(err))
+		})
+}
 
 export const FETCH_QUESTION_REQUEST = "FETCH_QUESTION_REQUEST"
 export const fetchQuestionRequest = () => ({
@@ -40,13 +77,6 @@ export const fetchQuestion = () => (dispatch, getState) => {
 		})
 }
 
-export const RECEIVE_FEEDBACK = "RECEIVE_FEEDBACK"
-export const receiveFeedBack = feedback => ({
-	type: RECEIVE_FEEDBACK,
-	feedback
-})
-
-
 export const SUBMIT_ANSWER_REQUEST = "SUBMIT_ANSWER_REQUEST"
 export const submitAnswerRequest = () => ({
 	type: SUBMIT_ANSWER_REQUEST,
@@ -83,49 +113,5 @@ export const submitAnswer = answer => (dispatch, getState) => {
 		})
 		.catch(err => {
 			dispatch(submitAnswerError(err));
-		})
-
-	// return from server
-	// const goodfeedback = "Good"
-	// const badfeedback = "bad"
-	// dispatch(receiveFeedBack(goodfeedback))
-}
-
-
-export const GENERATE_QUESTIONS_REQUEST = "GENERATE_QUESTIONS_REQUEST"
-export const generateQuestionsRequest = () => ({
-	type: GENERATE_QUESTIONS_REQUEST,
-});
-
-export const GENERATE_QUESTIONS_SUCCESS = "GENERATE_QUESTIONS_SUCCESS"
-export const generateQuestionsSuccess = () => ({
-	type: GENERATE_QUESTIONS_SUCCESS,
-});
-
-export const GENERATE_QUESTIONS_ERROR = "GENERATE_QUESTIONS_ERROR"
-export const generateQuestionsError = error => ({
-	type: GENERATE_QUESTIONS_ERROR,
-	error
-});
-
-export const generateQuestions = () => (dispatch, getState) => {
-	const authToken = getState().auth.authToken
-	dispatch(generateQuestionsRequest);
-	return fetch(`${API_BASE_URL}/simlish/generate`, {
-		method: "GET",
-		headers: {
-			Authorization: `Bearer ${authToken}`
-		}
-	})
-		.then(res => {
-			return normalizeResponseErrors(res)})
-		.then(res => {
-			return res.json(res)})
-		.then((res) => {
-			console.info('Successfully generated questions:', res);
-			dispatch(generateQuestionsSuccess());
-		})
-		.catch(err => {
-			dispatch(generateQuestionsError(err))
 		})
 }
