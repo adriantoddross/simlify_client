@@ -3,9 +3,12 @@ import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { fetchQuestion, submitAnswer, fetchReport } from "../actions/trainning"
 import Input from "./input"
-import { Field, reduxForm, focus } from "redux-form"
+import { Field, reduxForm, focus, reset } from "redux-form"
 import Dialog from "material-ui/Dialog"
 import Report from "./report"
+import GoRocket from "react-icons/lib/go/rocket"
+import GoX from "react-icons/lib/go/x"
+import GoQuote from "react-icons/lib/go/quote"
 export class Trainning extends React.Component {
 	constructor(props) {
 		super(props)
@@ -28,6 +31,7 @@ export class Trainning extends React.Component {
 		dispatch(fetchQuestion())
 	}
 	onSubmit(values) {
+		this.props.dispatch(reset("question"))
 		this.props.dispatch(submitAnswer(values))
 	}
 	fetchNextQuestion(e) {
@@ -50,9 +54,18 @@ export class Trainning extends React.Component {
 		let renderFeedback
 		if (feedback) {
 			if (feedback.status === "good") {
-				renderFeedback = <p />
+				renderFeedback = (
+					<p>
+						<GoRocket color={"green"} /> Horray !
+					</p>
+				)
 			} else {
-				renderFeedback = <p />
+				renderFeedback = (
+					<p>
+						<GoX color={"red"} /> You got it wrong! It's
+						<span>"{feedback.correctAnswer}"</span>
+					</p>
+				)
 			}
 		}
 
