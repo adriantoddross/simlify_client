@@ -1,9 +1,9 @@
 import React from "react"
 import requiresLogin from "./requires-login"
-import { Preview } from './preview';
+import Preview from './preview';
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
-import { generateQuestions} from "../actions/trainning"
+import { fetchQuestion, generateQuestions} from "../actions/trainning"
 
 export class Dashboard extends React.Component {
 
@@ -13,44 +13,52 @@ export class Dashboard extends React.Component {
 		this.state = {Redirect: false};
 	}
 
+	componentDidMount(){
+		this.props.dispatch(fetchQuestion())
+	}
+
 	render() {
+
+
+		if (this.props.loading) {
+			return (
+				<div>
+					<p>One second, the page is still loading!</p>
+				</div>
+			);
+		}
+
 		if (this.state.Redirect === true) {
 			return <Redirect to={`/trainning/${this.props.id}`}/>
 		}
 
-		const { lastWord, name, id } = this.props
+		const { name, currentQuestion } = this.props
 		let renderContent
-		if (lastWord) {
+		if (currentQuestion) {
 			renderContent = (
 				<div>
-					{/* todo: Preview Component */}
-					<div>
-						{/* Todo: need id number  `/trainning/${id} /favorite/${id}*/}
-						<button onClick={(() => this.setState({Redirect: true}))}>Continue</button>
-						<button>Favoriates</button>
-					</div>
+					<Preview greeting="Welcome back" name={name} message="Your last word was" question={currentQuestion.question}/>
+					<button onClick={(() => this.setState({Redirect: true}))}>Continue</button>
+					<button>Favoriates</button>
 				</div>
 			)
 		} else {
 			renderContent = (
 				<div>
-					{/* todo: Preview Component */}
-					<div>
-						{/* Todo: need id number */}
-						<button onClick={e => {	e.preventDefault();
-							this.props.dispatch(generateQuestions())
-								.then(() => this.setState({Redirect: true}));
-						}}
-						>Start new session</button>
-						<button>Favorites</button>
-					</div>
+					<Preview greeting="Hello" name={name} message="Ready to get started?"/>
+					<button onClick={e => {	e.preventDefault();
+						this.props.dispatch(generateQuestions())
+							.then(() => this.setState({Redirect: true}));
+					}}
+					>Start new session</button>
+					<button>Favorites</button>
 				</div>
 			)
 		}
 
 		return (
 			<div className="dashboard">
-				<div className="dashboard-name">Name: {this.props.name}</div>
+				<div className="dashboard-name"></div>
 				{renderContent}
 			</div>
 		)
@@ -62,12 +70,16 @@ const mapStateToProps = state => {
 	if (currentUser) {
 		return {
 			name: currentUser.firstname,
-			id: currentUser.id
+			id: currentUser.id,
+			currentQuestion: state.trainning.currentQuestion,
+			next: state.trainning.next,
+			loading: state.trainning.loading
 		}
 	} else {
 		return {
 			name: null,
 			id: null
+
 		}
 	}
 }
