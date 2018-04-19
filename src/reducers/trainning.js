@@ -21,7 +21,7 @@ export default function reducer(state=initialState, action) {
 
 	case 'GENERATE_QUESTIONS_REQUEST' : return Object.assign({}, state, {loading: true});
 
-	case 'GENERATE_QUESTIONS_REQUEST' : return Object.assign({}, state, {loading: false});
+	case 'GENERATE_QUESTIONS_SUCCESS' : return Object.assign({}, state, {loading: false});
 
 	case 'GENERATE_QUESTIONS_ERROR' : return Object.assign({}, state, {loading: false,error: action.error});
 
