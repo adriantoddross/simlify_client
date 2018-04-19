@@ -7,6 +7,7 @@ import LoginForm from "./login-form"
 import RegistrationForm from "./registration-form"
 import About from "./about"
 
+
 export class LandingPage extends React.Component {
 
 	handleCloseDialog() {
