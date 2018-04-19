@@ -17,9 +17,9 @@ export class Dashboard extends React.Component {
 				<div>
 					{/* todo: Preview Component */}
 					<div>
-						{/* Todo: need id number */}
-						<Link to={`/trainning/${id}`}>Continue</Link>
-						<Link to={`/favorite/${id}`}>Favoriates</Link>
+						{/* Todo: need id number  `/trainning/${id} /favorite/${id}*/}
+						<button>Continue</button>
+						<button>Favoriates</button>
 					</div>
 				</div>
 			)
@@ -29,8 +29,8 @@ export class Dashboard extends React.Component {
 					{/* todo: Preview Component */}
 					<div>
 						{/* Todo: need id number */}
-						<Link to={`/trainning/${id}`}>Start new session</Link>
-						<Link to={`/favorite/${id}`}>Favoriates</Link>
+						<button onClick={() => console.log('Sending to training component...')}>Start new session</button>
+						<button>Favoriates</button>
 					</div>
 				</div>
 			)
