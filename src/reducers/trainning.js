@@ -28,7 +28,7 @@ export default function trainingReducer(state=initialState, action) {
 
 	case SUBMIT_ANSWER_REQUEST : return Object.assign({}, state, {loading: true});
 
-	case SUBMIT_ANSWER_SUCCESS : return Object.assign({}, state, {feedback: action.feedback, loading: false});
+	case SUBMIT_ANSWER_SUCCESS : return Object.assign({}, state, {feedback: action.feedback, loading: false, next: true});
 
 	case SUBMIT_ANSWER_ERROR : return Object.assign({}, state, {loading: false, error: action.error});
 
