@@ -14,6 +14,7 @@ export class LandingPage extends React.Component {
 
 	handleCloseDialog() {
 		// dispatch dialog state from true to false
+		console.log('closing...');
 	}
 
 	render() {
@@ -32,7 +33,7 @@ export class LandingPage extends React.Component {
 		}
 		return (
 			<div>
-				<Dialog title="" modal={false} open={this.props.dialog} onRequestClose={}>
+				<Dialog title="" modal={false} open={this.props.dialog} onRequestClose={this.handleCloseDialog}>
 					{showForm}
 				</Dialog>
 				<About openDialog={() => this.setState({open: true})}/>
