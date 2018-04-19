@@ -3,11 +3,12 @@ import { connect } from "react-redux"
 import { clearAuth } from "../actions/auth"
 import { clearAuthToken } from "../local-storage"
 import Brand from "./brand"
-import { openLogin, openSignUp, openDialog } from "../actions/control"
+import { openLogin, openSignUp, openDialog, closeDialog } from "../actions/control"
 export class HeaderBar extends React.Component {
 	logOut() {
 		this.props.dispatch(clearAuth())
 		clearAuthToken()
+		this.props.dispatch(closeDialog())
 	}
 	signUp() {
 		// todo: signup data flow
