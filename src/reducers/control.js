@@ -7,7 +7,6 @@ const initialState = {
 
 export default function controlReducer(state = initialState, action) {
 	if (action.type === OPEN_SIGN_UP) {
-		console.log("helo")
 		return { ...state, currentTab: "signup" }
 	}
 	if (action.type === OPEN_LOGIN) {
