@@ -49,7 +49,7 @@ export class Dashboard extends React.Component {
 
 		return (
 			<div className="dashboard">
-				<div className="dashboard-name">Name: {name}</div>
+				<div className="dashboard-name">Name: {this.props.name}</div>
 				{renderContent}
 			</div>
 		)
@@ -60,14 +60,12 @@ const mapStateToProps = state => {
 	const { currentUser } = state.user
 	if (currentUser) {
 		return {
-			name: currentUser.firstName,
-			lastWord: currentUser.lastWord,
+			name: currentUser.firstname,
 			id: currentUser.id
 		}
 	} else {
 		return {
 			name: null,
-			lastWord: null,
 			id: null
 		}
 	}

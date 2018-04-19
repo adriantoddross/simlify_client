@@ -29,10 +29,9 @@ export const generateQuestions = () => (dispatch, getState) => {
 	})
 		.then(res => {
 			return normalizeResponseErrors(res)})
-		.then(res => {
-			return res.json(res)})
-		.then((res) => {
-			console.info('Successfully generated questions:', res);
+		.then(res => res.json())
+		.then(() => {
+			// console.info('Successfully generated questions:', res);
 			dispatch(generateQuestionsSuccess());
 		})
 		.catch(err => {
