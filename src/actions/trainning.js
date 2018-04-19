@@ -14,22 +14,22 @@ export const fetchQuestionError = error => ({
 })
 
 export const fetchQuestionData = () => (dispatch, getState) => {
-	// const authToken = getState().auth.authToken
-	// return fetch(`${API_BASE_URL}/question`, {
-	// 	method: "GET",
-	// 	headers: {
-	// 		// Provide our auth token as credentials
-	// 		Authorization: `Bearer ${authToken}`
-	// 	}
-	// })
-	// 	.then(res => normalizeResponseErrors(res))
-	// 	.then(res => res.json())
-	// 	.then(({ data }) => dispatch(fetchQuestionSuccess(data)))
-	// 	.catch(err => {
-	// 		dispatch(fetchQuestionError(err))
-	// 	})
-	const question = { question: "SulSul" }
-	dispatch(fetchQuestionSuccess(question))
+	const authToken = getState().auth.authToken
+	return fetch(`${API_BASE_URL}/simlish/question`, {
+		method: "GET",
+		headers: {
+			// Provide our auth token as credentials
+			Authorization: `Bearer ${authToken}`
+		}
+	})
+		.then(res => normalizeResponseErrors(res))
+		.then(res => res.json())
+		.then(({ data }) => {
+			dispatch(fetchQuestionSuccess(data));
+		})
+		.catch(err => {
+			dispatch(fetchQuestionError(err))
+		})
 }
 
 export const RECEIVE_FEEDBACK = "RECEIVE_FEEDBACK"
