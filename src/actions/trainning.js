@@ -20,20 +20,20 @@ export const fetchQuestionError = error => ({
 	error
 })
 
-export const fetchQuestionData = () => (dispatch, getState) => {
+export const fetchQuestion = () => (dispatch, getState) => {
 	const authToken = getState().auth.authToken
 	dispatch(fetchQuestionRequest());
 	return fetch(`${API_BASE_URL}/simlish/question`, {
 		method: "GET",
 		headers: {
-			// Provide our auth token as credentials
 			Authorization: `Bearer ${authToken}`
 		}
 	})
-		.then(res => normalizeResponseErrors(res))
-		.then(res => res.json())
-		.then(({ data }) => {
-			dispatch(fetchQuestionSuccess(data));
+		.then(res => {return normalizeResponseErrors(res);})
+		.then(res => {return res.json(res);})
+		.then((question) => {
+			console.log(question);
+			dispatch(fetchQuestionSuccess(question));
 		})
 		.catch(err => {
 			dispatch(fetchQuestionError(err))
