@@ -1,8 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import requiresLogin from "./requires-login"
-import { fetchQuestionData } from "../actions/trainning"
-import { Link } from "react-router-dom"
+import { generateQuestions} from "../actions/trainning"
 
 export class Dashboard extends React.Component {
 
@@ -26,8 +25,10 @@ export class Dashboard extends React.Component {
 					{/* todo: Preview Component */}
 					<div>
 						{/* Todo: need id number */}
-						<button onClick={() => console.log('Sending to training component...')}>Start new session</button>
-						<button>Favoriates</button>
+						<button onClick={e => {	e.preventDefault();
+							this.props.dispatch(generateQuestions())}}
+						>Start new session</button>
+						<button>Favorites</button>
 					</div>
 				</div>
 			)
