@@ -90,9 +90,12 @@ export const generateQuestions = () => (dispatch, getState) => {
 			Authorization: `Bearer ${authToken}`
 		}
 	})
-		.then(res => {normalizeResponseErrors(res)})
-		.then(res => res.json())
-		.then(() => {
+		.then(res => {
+			return normalizeResponseErrors(res)})
+		.then(res => {
+			return res.json(res)})
+		.then((res) => {
+			console.info('Successfully generated questions:', res);
 			dispatch(generateQuestionsSuccess());
 		})
 		.catch(err => {
