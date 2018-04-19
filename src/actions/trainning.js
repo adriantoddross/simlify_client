@@ -9,9 +9,9 @@ export const fetchQuestionRequest = () => ({
 
 
 export const FETCH_QUESTION_SUCCESS = "FETCH_QUESTION_SUCCESS"
-export const fetchQuestionSuccess = data => ({
+export const fetchQuestionSuccess = question => ({
 	type: FETCH_QUESTION_SUCCESS,
-	data
+	question
 })
 
 export const FETCH_QUESTION_ERROR = "FETCH_QUESTION_ERROR"
@@ -22,6 +22,7 @@ export const fetchQuestionError = error => ({
 
 export const fetchQuestionData = () => (dispatch, getState) => {
 	const authToken = getState().auth.authToken
+	dispatch(fetchQuestionRequest());
 	return fetch(`${API_BASE_URL}/simlish/question`, {
 		method: "GET",
 		headers: {
