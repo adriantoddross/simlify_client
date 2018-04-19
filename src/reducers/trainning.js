@@ -16,7 +16,7 @@ export default function trainingReducer(state=initialState, action) {
 
 	case FETCH_QUESTION_REQUEST : return Object.assign({}, state, {loading: true});
 
-	case FETCH_QUESTION_SUCCESS : return Object.assign({}, state, {currentQuestion: action.data, error: null, loading: false, next: false});
+	case FETCH_QUESTION_SUCCESS : return Object.assign({}, state, {currentQuestion: action.question, error: null, loading: false, next: false});
 
 	case FETCH_QUESTION_ERROR : return Object.assign({}, state, {loading: false, error: action.error});
 
