@@ -1,7 +1,28 @@
 .login-form {
-  color: red;
+  width: 80%;
+  /* font-size: 24px; */
+  /* align-items: center; */
+  /* display: flex;
+  /* justify-content: center; */
+  /* flex-direction: column; */
 }
 
 .form-input {
-  margin: 15px 15px;
+  padding-bottom: 5%;
+  /* padding: 5px; */
+
+}
+
+.login-form label {
+  display: block;
+  font-weight: bold;
+  padding-bottom: 1%;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.login-form input {
+  border: 2px solid darkgrey;
+  width: 100%;
+  padding: 15px;
 }
