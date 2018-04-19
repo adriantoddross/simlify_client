@@ -66,17 +66,17 @@ export const sendAnswerData = answer => (dispatch, getState) => {
 
 export const GENERATE_QUESTIONS_REQUEST = "GENERATE_QUESTIONS_REQUEST"
 export const generateQuestionsRequest = () => ({
-	type: FETCH_QUESTION_SUCCESS,
+	type: GENERATE_QUESTIONS_REQUEST,
 });
 
 export const GENERATE_QUESTIONS_SUCCESS = "GENERATE_QUESTIONS_SUCCESS"
 export const generateQuestionsSuccess = () => ({
-	type: FETCH_QUESTION_SUCCESS,
+	type: GENERATE_QUESTIONS_SUCCESS,
 });
 
 export const GENERATE_QUESTIONS_ERROR = "GENERATE_QUESTIONS_ERROR"
 export const generateQuestionsError = error => ({
-	type: FETCH_QUESTION_SUCCESS,
+	type: GENERATE_QUESTIONS_ERROR,
 	error
 });
 
