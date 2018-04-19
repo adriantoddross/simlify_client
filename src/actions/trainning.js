@@ -83,13 +83,14 @@ export const generateQuestionsError = error => ({
 export const generateQuestions = () => (dispatch, getState) => {
 	const authToken = getState().auth.authToken
 	dispatch(generateQuestionsRequest);
-	return fetch(`${API_BASE_URL}/simlish/question`, {
+	return fetch(`${API_BASE_URL}/simlish/generate`, {
 		method: "GET",
 		headers: {
 			// Provide our auth token as credentials
 			Authorization: `Bearer ${authToken}`
 		}
 	})
+		.then(res => {normalizeResponseErrors(res)})
 		.then(res => res.json())
 		.then(() => {
 			dispatch(generateQuestionsSuccess());
