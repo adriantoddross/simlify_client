@@ -1,6 +1,13 @@
 import { API_BASE_URL } from "../config"
 import { normalizeResponseErrors } from "./utils"
 
+
+export const FETCH_QUESTION_REQUEST = "FETCH_QUESTION_REQUEST"
+export const fetchQuestionRequest = () => ({
+	type: FETCH_QUESTION_SUCCESS
+})
+
+
 export const FETCH_QUESTION_SUCCESS = "FETCH_QUESTION_SUCCESS"
 export const fetchQuestionSuccess = data => ({
 	type: FETCH_QUESTION_SUCCESS,
