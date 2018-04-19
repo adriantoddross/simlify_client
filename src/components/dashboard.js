@@ -1,11 +1,22 @@
 import React from "react"
-import { connect } from "react-redux"
 import requiresLogin from "./requires-login"
+import { connect } from "react-redux"
+import { Redirect } from "react-router-dom"
 import { generateQuestions} from "../actions/trainning"
 
 export class Dashboard extends React.Component {
 
+	constructor(props) {
+		super(props);
+
+		this.state = {Redirect: false};
+	}
+
 	render() {
+		if (this.state.Redirect === true) {
+			return <Redirect to={`/trainning/${this.props.id}`}/>
+		}
+
 		const { lastWord, name, id } = this.props
 		let renderContent
 		if (lastWord) {
@@ -14,7 +25,7 @@ export class Dashboard extends React.Component {
 					{/* todo: Preview Component */}
 					<div>
 						{/* Todo: need id number  `/trainning/${id} /favorite/${id}*/}
-						<button>Continue</button>
+						<button onClick={(() => this.setState({Redirect: true}))}>Continue</button>
 						<button>Favoriates</button>
 					</div>
 				</div>
@@ -26,7 +37,9 @@ export class Dashboard extends React.Component {
 					<div>
 						{/* Todo: need id number */}
 						<button onClick={e => {	e.preventDefault();
-							this.props.dispatch(generateQuestions())}}
+							this.props.dispatch(generateQuestions())
+								.then(() => this.setState({Redirect: true}));
+						}}
 						>Start new session</button>
 						<button>Favorites</button>
 					</div>
