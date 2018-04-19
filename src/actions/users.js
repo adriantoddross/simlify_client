@@ -4,7 +4,6 @@ import { normalizeResponseErrors } from "./utils"
 import { login } from "./auth"
 
 export const localRegister = user => dispatch => {
-	console.log(user);
 	return fetch(`${API_BASE_URL}/signup/local`, {
 		method: "POST",
 		headers: {
@@ -12,12 +11,12 @@ export const localRegister = user => dispatch => {
 		},
 		body: JSON.stringify(user)
 	})
-		.then(res => {return normalizeResponseErrors(res)})
-		.then(res => {
-			console.log(res);
-			res.json(res)})
-		.then(user => {
-			return dispatch(login(user.username, user.password))
+		.then(res => normalizeResponseErrors(res))
+		.then(res => res.json())
+		.then(() => {
+			const newUser = {username: user.username, password: user.password};
+			console.log(newUser);
+			return dispatch(login(newUser))
 		})
 		.catch(err => {
 			const { reason, message, location } = err
