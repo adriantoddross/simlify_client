@@ -46,29 +46,49 @@ export const receiveFeedBack = feedback => ({
 	feedback
 })
 
-export const sendAnswerData = answer => (dispatch, getState) => {
-	// 	const authToken = getState().auth.authToken
-	// 	return fetch(`${API_BASE_URL}/answer`, {
-	// 	method: "POST",
-	// 	headers: {
-	// 		// Provide our auth token as credentials
-	// 		Authorization: `Bearer ${authToken}`
-	// 	},
-	// 	body:JSON.stringify(answer)
-	// })
-	// 	.then(res => normalizeResponseErrors(res))
-	// 	.then(res => res.json())
-	// 	.then(feedback => {
-	// 		dispatch(receiveFeedBack(feedback))
-	// 	})
-	// 	.catch(err => {
-	// 		dispatch(fetchQuestionError(err))
-	// 	})
+
+export const SUBMIT_ANSWER_REQUEST = "SUBMIT_ANSWER_REQUEST"
+export const submitAnswerRequest = () => ({
+	type: SUBMIT_ANSWER_REQUEST,
+});
+
+export const SUBMIT_ANSWER_SUCCESS = "SUBMIT_ANSWER_SUCCESS"
+export const submitAnswerSuccess = feedback => ({
+	type: SUBMIT_ANSWER_SUCCESS,
+	feedback
+});
+
+export const SUBMIT_ANSWER_ERROR = "SUBMIT_ANSWER_ERROR"
+export const submitAnswerError = error => ({
+	type: SUBMIT_ANSWER_ERROR,
+	error
+});
+
+export const submitAnswer = answer => (dispatch, getState) => {
+	const authToken = getState().auth.authToken
+	dispatch(submitAnswerSuccess);
+	return fetch(`${API_BASE_URL}simlish/answer`, {
+		method: "POST",
+		headers: {
+			// Provide our auth token as credentials
+			Authorization: `Bearer ${authToken}`
+		},
+		body:JSON.stringify(answer)
+	})
+		.then(res => {return normalizeResponseErrors(res);})
+		.then(res => {return res.json(res);})
+		.then(feedback => {
+			console.log(feedback);
+			dispatch(submitAnswerSuccess(feedback));
+		})
+		.catch(err => {
+			dispatch(submitAnswerError(err));
+		})
 
 	// return from server
-	const goodfeedback = "Good"
-	const badfeedback = "bad"
-	dispatch(receiveFeedBack(goodfeedback))
+	// const goodfeedback = "Good"
+	// const badfeedback = "bad"
+	// dispatch(receiveFeedBack(goodfeedback))
 }
 
 
