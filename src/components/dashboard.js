@@ -5,9 +5,6 @@ import { fetchQuestionData } from "../actions/trainning"
 import { Link } from "react-router-dom"
 
 export class Dashboard extends React.Component {
-	constructor(props) {
-		super(props)
-	}
 
 	render() {
 		const { lastWord, name, id } = this.props
