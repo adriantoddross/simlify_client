@@ -9,13 +9,11 @@ import Report from "./report"
 import GoRocket from "react-icons/lib/go/rocket"
 import GoX from "react-icons/lib/go/x"
 import "../css/trainning.css"
-const customContent = {
-	width: "450px",
-	height: "500px",
-	backgroundColor: "grey"
-}
-const bodyStyle = {
-	backgroundColor: "grey"
+import MediaQuery from "react-responsive"
+
+const customStyle = {
+	width: "480px",
+	height: "700px"
 }
 export class Trainning extends React.Component {
 	constructor(props) {
@@ -57,6 +55,10 @@ export class Trainning extends React.Component {
 			this.props.dispatch(fetchQuestion())
 		})
 		this.handleClose()
+	}
+	handleRedirect() {
+		const { id } = this.props.currentUser
+		this.props.history.push(`/dashboard/${id}`)
 	}
 
 	render() {
@@ -104,17 +106,23 @@ export class Trainning extends React.Component {
 
 		return (
 			<div className="training-container">
-				<Dialog
-					modal={true}
-					open={this.state.open}
-					autoScrollBodyContent={true}
-					contentStyle={customContent}
-				>
-					<Report />
-					<div className="report-btn">
-						<button onClick={e => this.handleNewQuestionSet(e)}>Start new session</button>
-					</div>
-				</Dialog>
+				<MediaQuery maxDeviceWidth={500}>
+					{matches => {
+						return (
+							<Dialog modal={true} open={this.state.open} contentStyle={matches ? {} : customStyle}>
+								<Report />
+								<div className="report-btn">
+									<button onClick={e => this.handleNewQuestionSet(e)}>Start new session</button>
+									<hr />
+									<button className="red" onClick={e => this.handleRedirect(e)}>
+										Go Back
+									</button>
+								</div>
+							</Dialog>
+						)
+					}}
+				</MediaQuery>
+
 				<div className="training-content animated fadeIn">
 					<header className="training-header">
 						<p>
@@ -150,7 +158,8 @@ const mapStateToProps = state => {
 		currentQuestion: state.trainning.currentQuestion,
 		feedback: state.trainning.feedback,
 		authToken: state.user.authToken,
-		next: state.trainning.next
+		next: state.trainning.next,
+		currentUser: state.user.currentUser
 	}
 }
 export default reduxForm({
