@@ -9,12 +9,6 @@ export function Report(props) {
 		return <div>Something is not right</div>
 	}
 	const renderReport = props.reports.map((report, index) => {
-		let renderStat
-		if (report.inCorrect > 0) {
-			renderStat = <div className="report-stat">It took you {report.inCorrect} tries to remember this word</div>
-		} else {
-			renderStat = <div className="report-stat">You have pretty good handle on this word</div>
-		}
 		if (report.totalAttempt !== 0) {
 			return (
 				<li key={index} className="report-item">

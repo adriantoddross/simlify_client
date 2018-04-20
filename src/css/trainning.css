@@ -6,7 +6,8 @@
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	background: url("https://static.trueachievements.com/customimages/068868.jpg") no-repeat center center fixed;
+	background: url("https://static.trueachievements.com/customimages/068868.jpg") no-repeat center
+		center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -76,4 +77,32 @@
 }
 .training-feedback span {
 	font-weight: bold;
+}
+
+.report-btn button {
+	cursor: pointer;
+	width: 100%;
+	padding: 20px 20px;
+	margin-bottom: 10px;
+	border: 0;
+	border-radius: 5px;
+	background-color: #43a047;
+	font-size: 20px;
+	color: rgba(255, 255, 255, 0.89);
+}
+.red {
+	background-color: #f44336e0 !important;
+}
+.report-btn button:hover {
+	font-weight: bold;
+}
+
+@media screen and (max-width: 500px) {
+	.training-container {
+		min-height: 85vh;
+		background: url("http://www.kinyu-z.net/data/wallpapers/83/992320.jpg");
+	}
+	.training-content {
+		width: 350px;
+	}
 }
