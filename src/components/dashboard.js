@@ -39,14 +39,14 @@ export class Dashboard extends React.Component {
 			renderContent = (
 				<div>
 					<Preview greeting="Welcome back" name={name} message="Your last word was" question={currentQuestion.question}/>
-					<button className="preview-primary-button" onClick={(() => this.setState({Redirect: true}))}>Continue</button>
+					<button className="preview-primary-button" onClick={(() => this.setState({Redirect: true}))}>Continue learning</button>
 					<button className="preview-button">Favorites (Coming soon!)</button>
 				</div>
 			)
 		} else {
 			renderContent = (
 				<div>
-					<Preview greeting="Hello" name={name} message="Ready to get started?"/>
+					<Preview greeting="Hello" name={name} message="Start learning"/>
 					<button className="preview-primary-button" onClick={e => {	e.preventDefault();
 						this.props.dispatch(generateQuestions())
 							.then(() => this.setState({Redirect: true}));
