@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { fetchQuestion, generateQuestions} from "../actions/trainning"
 import '../css/dashboard.css';
-
+import MediaQuery from 'react-responsive';
 export class Dashboard extends React.Component {
 
 	constructor(props) {
@@ -40,7 +40,7 @@ export class Dashboard extends React.Component {
 				<div>
 					<Preview greeting="Welcome back" name={name} message="Your last word was" question={currentQuestion.question}/>
 					<button className="preview-primary-button" onClick={(() => this.setState({Redirect: true}))}>Continue learning</button>
-					<button className="preview-button">Favorites (Coming soon!)</button>
+					{/* <button className="preview-button">Favorites (Coming soon!)</button> */}
 				</div>
 			)
 		} else {
@@ -52,15 +52,18 @@ export class Dashboard extends React.Component {
 							.then(() => this.setState({Redirect: true}));
 					}}
 					>Start new session</button>
-					<button className="preview-button">Favorites (Coming soon!)</button>
+					{/* <button className="preview-button">Favorites (Coming soon!)</button> */}
 				</div>
 			)
 		}
 
 		return (
 			<div className="dashboard">
-				<div className="dashboard-name"></div>
-				{renderContent}
+				<MediaQuery query="(min-device-width: 320px)">
+					<div className="dashboard-name">
+					</div>
+						{renderContent}
+				</MediaQuery>
 			</div>
 		)
 	}
