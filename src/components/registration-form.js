@@ -52,10 +52,10 @@ export class RegistrationForm extends React.Component {
 					placeholder="••••••••"
 				/>
 				<button className="form-register"type="submit" disabled={this.props.pristine || this.props.submitting}>
-					Register
+					Sign Up
 				</button>
 				<button className="form-login" onClick={() => this.handleLoginClick()}>
-					Login
+					Already have an account? <span className="form-login-text">Log in</span>
 				</button>
 			</form>
 		)
