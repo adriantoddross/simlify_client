@@ -4,6 +4,8 @@ import { clearAuth } from "../actions/auth"
 import { clearAuthToken } from "../local-storage"
 import Brand from "./brand"
 import { openLogin, openSignUp, openDialog, closeDialog } from "../actions/control"
+import './css/headerbar.css';
+
 export class HeaderBar extends React.Component {
 	logOut() {
 		this.props.dispatch(clearAuth())
