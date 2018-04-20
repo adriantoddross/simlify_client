@@ -1,7 +1,6 @@
 import React from "react"
 import { Field, reduxForm, focus } from "redux-form"
 import { localRegister } from "../actions/users"
-import { Link} from "react-router-dom"
 import Input from "./input"
 import { required, nonEmpty, matches, length, isTrimmed } from "../validators"
 import { openLogin } from "../actions/control"
