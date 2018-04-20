@@ -1,7 +1,7 @@
 .training-container {
 	width: 100vw;
 	display: flex;
-	min-height: 85vh;
+	min-height: 100vh;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -23,6 +23,11 @@
 	text-align: center;
 	width: 100%;
 	padding: 20px 10px;
+}
+.training-header strong {
+	font-family: "Cabin Sketch";
+	font-size: 25px;
+	font-weight: bold;
 }
 .training-body {
 	display: block;
@@ -99,7 +104,7 @@
 
 @media screen and (max-width: 500px) {
 	.training-container {
-		min-height: 85vh;
+		min-height: 100vh;
 		background: url("http://www.kinyu-z.net/data/wallpapers/83/992320.jpg");
 	}
 	.training-content {
