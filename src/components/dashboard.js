@@ -4,6 +4,7 @@ import Preview from './preview';
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { fetchQuestion, generateQuestions} from "../actions/trainning"
+import '../css/dashboard.css';
 
 export class Dashboard extends React.Component {
 
@@ -38,20 +39,20 @@ export class Dashboard extends React.Component {
 			renderContent = (
 				<div>
 					<Preview greeting="Welcome back" name={name} message="Your last word was" question={currentQuestion.question}/>
-					<button onClick={(() => this.setState({Redirect: true}))}>Continue</button>
-					<button>Favoriates</button>
+					<button className="preview-primary-button" onClick={(() => this.setState({Redirect: true}))}>Continue</button>
+					<button className="preview-button">Favorites (Coming soon!)</button>
 				</div>
 			)
 		} else {
 			renderContent = (
 				<div>
 					<Preview greeting="Hello" name={name} message="Ready to get started?"/>
-					<button onClick={e => {	e.preventDefault();
+					<button className="preview-primary-button" onClick={e => {	e.preventDefault();
 						this.props.dispatch(generateQuestions())
 							.then(() => this.setState({Redirect: true}));
 					}}
 					>Start new session</button>
-					<button>Favorites</button>
+					<button className="preview-button">Favorites (Coming soon!)</button>
 				</div>
 			)
 		}
