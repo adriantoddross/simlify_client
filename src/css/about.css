@@ -1,5 +1,4 @@
 .about {
-  /* display: flex; */
   color: #445257;
   margin: 0 auto;
   padding: 0;
@@ -7,9 +6,9 @@
 }
 
 .about-container {
-  display: flex;
-  margin-top: 150px;
-  padding: 50px;
+  /* display: flex; */
+  margin-top: 40px;
+  padding: 9%;
 }
 
 .about-header{
@@ -17,34 +16,33 @@
   padding-bottom: 5px;
 }
 
-/* .about-desc{} */
-
 .about-button {
-  border-radius: 5px;
-  display: inline-block;
-  padding: 15px;
-  margin-bottom: 15px;
-  width: 400px;
-  font-size: 75%;
-  height: 75px;
   background-color: #43a047;
+  border-radius: 5px;
   border-style: none;
   color: white;
+  display: inline-block;
   font-weight: bold;
+  padding: 15px;
+  margin-bottom: 15px;
+  font-size: 75%;
 }
 
 .about-info {
-  font-size: 225%;
-  width: 70%;
+  font-size: 1.5vmax;
+  width: 100%;
+  padding: 15px;
 }
 
 .about-image {
-  width: 30%;
-  padding: 5px;
+  padding: 15px;
+  width: 100%;
 }
 
 .about-image img {
-  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   height: auto;
-  padding: 5px;
+  width: 100%;
 }
