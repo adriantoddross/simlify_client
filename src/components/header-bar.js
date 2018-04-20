@@ -12,12 +12,12 @@ export class HeaderBar extends React.Component {
 	}
 	signUp() {
 		// todo: signup data flow
-		this.props.dispatch(openDialog());
+		this.props.dispatch(openDialog())
 		this.props.dispatch(openSignUp())
 	}
 	logIn(data) {
 		//todo: log in data flow
-		this.props.dispatch(openDialog());
+		this.props.dispatch(openDialog())
 		this.props.dispatch(openLogin())
 	}
 

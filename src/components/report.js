@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
+import "../css/report.css"
 export function Report(props) {
 	if (props.loading || !props.reports) {
 		return <div>Page is loading ...</div>
@@ -9,22 +10,28 @@ export function Report(props) {
 	}
 	const renderReport = props.reports.map((report, index) => {
 		let renderStat
-		if (report.inCorrect) {
-			renderStat = <div>It took you {report.inCorrect} tries to remember this word</div>
+		if (report.inCorrect > 0) {
+			renderStat = <div className="report-stat">It took you {report.inCorrect} tries to remember this word</div>
+		} else {
+			renderStat = <div className="report-stat">You have pretty good handle on this word</div>
 		}
-		renderStat = <div>You have pretty good handle on this word</div>
 		if (report.totalAttempt !== 0) {
 			return (
-				<li key={index}>
+				<li key={index} className="report-item">
 					<div>
-						<strong>{report.question}</strong> : {report.answer}
+						<span className="report-question">
+							<strong>{report.question}</strong>
+						</span>
+						<span>
+							<strong>{report.answer}</strong>
+						</span>
 					</div>
-					{renderStat}
 				</li>
 			)
 		}
+		return ""
 	})
-	return <ul>{renderReport}</ul>
+	return <ul style={{ padding: "0", backgroundColor: "white" }}>{renderReport}</ul>
 }
 
 const mapStateToProps = state => ({

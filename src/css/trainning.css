@@ -1,0 +1,79 @@
+.training-container {
+	width: 100vw;
+	display: flex;
+	min-height: 85vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background: url("https://static.trueachievements.com/customimages/068868.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.training-content {
+	width: 480px;
+	background: white;
+	border-radius: 5px;
+}
+.training-header {
+	font-size: 20px;
+	text-align: center;
+	width: 100%;
+	padding: 20px 10px;
+}
+.training-body {
+	display: block;
+	width: 100%;
+}
+.training-input-group {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.training-input-group button {
+	cursor: pointer;
+	width: 350px;
+	margin: 10px 10px;
+	padding: 10px 10px;
+	background-color: #43a047;
+	border: 0;
+	border-radius: 5px;
+	color: rgba(255, 255, 255, 0.849);
+	font-weight: 500;
+	font-size: 20px;
+}
+.training-input-group button:hover {
+	background-color: #3f51b5;
+}
+.training-control-group {
+	padding: 50px 0px;
+	text-align: center;
+}
+.training-control-group button {
+	cursor: pointer;
+	display: inline-block;
+	padding: 8px 8px;
+	border: 0;
+	border-radius: 5px;
+	font-weight: 500;
+	font-size: 20px;
+	background-color: #f44336;
+	color: rgba(255, 255, 255, 0.89);
+}
+.training-control-group button:hover {
+	background-color: #3f51b5;
+}
+.training-next {
+	outline-color: rgb(3, 31, 63) !important;
+	border: solid rgba(68, 64, 64, 0.794) 2px;
+}
+.training-feedback {
+	padding: 10px 8px;
+	font-size: 18px;
+	color: rgba(36, 35, 35, 0.89);
+}
+.training-feedback span {
+	font-weight: bold;
+}
