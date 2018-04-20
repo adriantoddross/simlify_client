@@ -32,7 +32,7 @@ export class LandingPage extends React.Component {
 		}
 		return (
 			<div>
-				<Dialog title="" modal={false} open={this.props.dialog} onRequestClose={() => this.handleCloseDialog()}>
+				<Dialog title="" modal={false} autoScrollBodyContent={true} open={this.props.dialog} onRequestClose={() => this.handleCloseDialog()}>
 					{showForm}
 				</Dialog>
 				<About openDialog={() => this.setState({open: true})}/>
