@@ -1,11 +1,22 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom"
-import { fetchQuestion, submitAnswer, fetchReport } from "../actions/trainning"
-import Input from "./input"
-import { Field, reduxForm, focus } from "redux-form"
+import { fetchQuestion, submitAnswer, fetchReport, generateQuestions } from "../actions/trainning"
+import Input from "./training-input"
+import { Field, reduxForm, focus, reset } from "redux-form"
 import Dialog from "material-ui/Dialog"
 import Report from "./report"
+import GoRocket from "react-icons/lib/go/rocket"
+import GoX from "react-icons/lib/go/x"
+import "../css/trainning.css"
+const customContent = {
+	width: "450px",
+	height: "500px",
+	backgroundColor: "grey"
+}
+const bodyStyle = {
+	backgroundColor: "grey"
+}
 export class Trainning extends React.Component {
 	constructor(props) {
 		super(props)
@@ -28,6 +39,7 @@ export class Trainning extends React.Component {
 		dispatch(fetchQuestion())
 	}
 	onSubmit(values) {
+		this.props.dispatch(reset("question"))
 		this.props.dispatch(submitAnswer(values))
 	}
 	fetchNextQuestion(e) {
@@ -38,6 +50,13 @@ export class Trainning extends React.Component {
 		e.preventDefault()
 		this.handleOpen()
 		this.props.dispatch(fetchReport())
+	}
+	handleNewQuestionSet(e) {
+		e.preventDefault()
+		this.props.dispatch(generateQuestions()).then(() => {
+			this.props.dispatch(fetchQuestion())
+		})
+		this.handleClose()
 	}
 
 	render() {
@@ -50,35 +69,78 @@ export class Trainning extends React.Component {
 		let renderFeedback
 		if (feedback) {
 			if (feedback.status === "good") {
-				renderFeedback = <p />
+				renderFeedback = (
+					<p>
+						<GoRocket color={"green"} /> Horray !
+					</p>
+				)
 			} else {
-				renderFeedback = <p />
+				renderFeedback = (
+					<p className="training-feedback">
+						<GoX color={"red"} size={24} /> You got it wrong! It's
+						<span> " {feedback.correctAnswer} " </span>
+					</p>
+				)
 			}
+		}
+		let renderBtn
+		if (!this.props.next) {
+			renderBtn = (
+				<button disabled={this.props.next} type="submit">
+					Submit
+				</button>
+			)
+		} else {
+			renderBtn = (
+				<button
+					disabled={!this.props.next}
+					onClick={e => this.fetchNextQuestion(e)}
+					className="training-next"
+				>
+					Next Question
+				</button>
+			)
 		}
 
 		return (
-			<div>
-				<header>
-					<h1>What does {currentQuestion.question} mean?</h1>
-				</header>
-				{renderFeedback}
-				<form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
-					<label htmlFor="answer">Your Answer</label>
-					<Field type="text" name="answer" component={Input} autocomplete="off" />
-					<button disabled={this.props.next} type="submit">
-						Submit Answer
-					</button>
-					<button disabled={!this.props.next} onClick={e => this.fetchNextQuestion(e)}>
-						Next Question
-					</button>
-					<button onClick={e => this.handleFetchReport(e)}>End session</button>
-				</form>
-				<Dialog title="Dialog With Actions" modal={true} open={this.state.open}>
+			<div className="training-container">
+				<Dialog
+					modal={true}
+					open={this.state.open}
+					autoScrollBodyContent={true}
+					contentStyle={customContent}
+				>
 					<Report />
-					<div>
-						<button onClick={e => this.handleClose()}>Start new session</button>
+					<div className="report-btn">
+						<button onClick={e => this.handleNewQuestionSet(e)}>Start new session</button>
 					</div>
 				</Dialog>
+				<div className="training-content animated fadeIn">
+					<header className="training-header">
+						<p>
+							What does <strong>"{currentQuestion.question}"</strong> mean?
+						</p>
+					</header>
+					<section className="training-body">
+						{renderFeedback}
+						<form
+							onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
+							className="training-input-group"
+						>
+							<Field
+								type="text"
+								name="answer"
+								component={Input}
+								autocomplete="off"
+								disabled={this.props.next ? true : false}
+							/>
+							{renderBtn}
+						</form>
+						<div className="training-control-group">
+							<button onClick={e => this.handleFetchReport(e)}>End session</button>
+						</div>
+					</section>
+				</div>
 			</div>
 		)
 	}

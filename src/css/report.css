@@ -1,0 +1,28 @@
+.report-item {
+	padding: 20px 20px;
+	text-align: center;
+	list-style: none;
+	margin-bottom: 10px;
+	color: rgba(87, 84, 84, 0.801);
+	box-shadow: 0 2px 2px rgba(51, 50, 50, 0.644);
+}
+.report-item span {
+	display: inline-block;
+	width: 50%;
+}
+.report-question {
+	border-right: solid grey 2px;
+}
+.report-btn button {
+	cursor: pointer;
+	width: 100%;
+	padding: 20px 20px;
+	border: 0;
+	border-radius: 5px;
+	background-color: #43a047;
+	font-size: 20px;
+	color: rgba(255, 255, 255, 0.89);
+}
+.report-btn button:hover {
+	font-weight: bold;
+}
