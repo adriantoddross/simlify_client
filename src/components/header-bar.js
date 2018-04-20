@@ -28,12 +28,12 @@ export class HeaderBar extends React.Component {
 		let logOutButton
 		let unAuthorizedButton
 		if (this.props.loggedIn) {
-			logOutButton = <button onClick={() => this.logOut()}>Log out</button>
+			logOutButton = <button className="header-primary" onClick={() => this.logOut()}>Log out</button>
 		} else {
 			unAuthorizedButton = (
 				<div>
-					<button onClick={() => this.signUp()}>Sign Up</button>
-					<button onClick={() => this.logIn()}>Log In</button>
+					<button className="header-button" onClick={() => this.signUp()}>Sign Up</button>
+					<button className="header-primary" onClick={() => this.logIn()}>Log In</button>
 				</div>
 			)
 		}
