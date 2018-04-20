@@ -54,7 +54,7 @@ export class RegistrationForm extends React.Component {
 				<button className="form-register"type="submit" disabled={this.props.pristine || this.props.submitting}>
 					Register
 				</button>
-				<button onClick={() => this.handleLoginClick()}>
+				<button className="form-login" onClick={() => this.handleLoginClick()}>
 					Login
 				</button>
 			</form>
