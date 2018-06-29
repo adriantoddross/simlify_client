@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { clearAuth } from "../actions/auth"
+import { clearAuth, login } from "../actions/auth"
 import { clearAuthToken } from "../local-storage"
 import Brand from "./brand"
 import { openLogin, openSignUp, openDialog, closeDialog } from "../actions/control"
@@ -36,6 +36,9 @@ export class HeaderBar extends React.Component {
 		} else {
 			unAuthorizedButton = (
 				<div>
+					<button className="header-primary-button" onClick={() => this.props.dispatch(login({username: 'pizzadev123', password: 'thinkful2018'}))}>
+						Demo
+					</button>
 					<button className="header-button" onClick={() => this.signUp()}>
 						Sign Up
 					</button>
