@@ -8,7 +8,7 @@
 .about-container {
   /* display: flex; */
   margin-top: 40px;
-  padding: 9%;
+  padding: 10px;
 }
 
 .about-header{
@@ -25,11 +25,10 @@
   font-weight: bold;
   padding: 15px;
   margin-bottom: 15px;
-  font-size: 75%;
+  font-size: 125%;
 }
 
 .about-info {
-  font-size: 2vmax;
   width: 100%;
   padding: 15px;
 }
@@ -40,9 +39,39 @@
 }
 
 .about-image img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
-  width: 100%;
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media only screen and (min-width: 768px)  {
+
+  .about-container {
+    padding: 50px;
+  }
+
+  .about-image img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: 100%;
+  }
+
+
+  @media only screen and (min-width: 1024px)  {
+    .about-container {
+      padding: 75px;
+    }
+
+    .about-button {
+      font-size: 100%;
+    }
+
+    .about-info {
+      font-size: 1.5vmax;
+    }
+
+  }
+
 }
