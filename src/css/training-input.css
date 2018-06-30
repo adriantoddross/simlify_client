@@ -1,18 +1,28 @@
 .training-input {
 	display: block;
-	width: 350px;
-	margin: 20px 5px;
+	padding: 25px 0px;
+	margin: 0 auto;
 }
+
 .training-input input {
 	border: 0;
-	width: 100%;
 	outline: 0;
-	padding-left: 2px;
-	padding-bottom: 5px;
-	font-size: 20px;
-	margin-bottom: 20px;
 	border-bottom: solid #1976d2 3px;
 }
+
 .training-input input:disabled {
-	background: white;
+	display: none;
 }
+
+@media only screen and (min-width: 768px)  {
+
+	.training-input {
+		padding: 50px 0px;
+	}
+
+	.training-input input{
+		width: 300px;
+	}
+}
+
+@media only screen and (min-width: 1024px)  {}

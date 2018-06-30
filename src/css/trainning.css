@@ -1,46 +1,50 @@
 .training-container {
-	width: 100vw;
+	/* width: 100vw; */
+	margin-top: 75px;
 	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	text-align: center;
-	background: url("https://static.trueachievements.com/customimages/068868.jpg") no-repeat center
+	/* height: 550px; */
+	/* flex-direction: column; */
+	/* text-align: center; */
+	/* background: url("https://static.trueachievements.com/customimages/068868.jpg") no-repeat center
 		center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	background-size: cover;
+	background-size: cover; */
 }
 .training-content {
-	width: 480px;
-	background: white;
+	width: auto;
 	border-radius: 5px;
+	padding: 15px;
 }
+
 .training-header {
-	font-size: 20px;
+	font-size: 30px;
 	text-align: center;
 	width: 100%;
-	padding: 20px 10px;
 }
+
 .training-header strong {
 	font-family: "Cabin Sketch";
 	font-size: 25px;
 	font-weight: bold;
 }
+
 .training-body {
 	display: block;
 	width: 100%;
 }
+
 .training-input-group {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
+
 .training-input-group button {
 	cursor: pointer;
-	width: 350px;
 	margin: 10px 10px;
 	padding: 10px 10px;
 	background-color: #43a047;
@@ -53,10 +57,11 @@
 .training-input-group button:hover {
 	background-color: #3f51b5;
 }
+
 .training-control-group {
-	padding: 50px 0px;
 	text-align: center;
 }
+
 .training-control-group button {
 	cursor: pointer;
 	display: inline-block;
@@ -68,18 +73,22 @@
 	background-color: #f44336;
 	color: rgba(255, 255, 255, 0.89);
 }
+
 .training-control-group button:hover {
 	background-color: #3f51b5;
 }
+
 .training-next {
 	outline-color: rgb(3, 31, 63) !important;
 	border: solid rgba(68, 64, 64, 0.794) 2px;
 }
+
 .training-feedback {
-	padding: 10px 8px;
-	font-size: 18px;
+	padding: 15px 0px;
+	text-align: center;
 	color: rgba(36, 35, 35, 0.89);
 }
+
 .training-feedback span {
 	font-weight: bold;
 }
@@ -87,7 +96,7 @@
 .report-btn button {
 	cursor: pointer;
 	width: 100%;
-	padding: 20px 20px;
+	padding: 10px;
 	margin-bottom: 10px;
 	border: 0;
 	border-radius: 5px;
@@ -95,6 +104,7 @@
 	font-size: 20px;
 	color: rgba(255, 255, 255, 0.89);
 }
+
 .red {
 	background-color: #f44336e0 !important;
 }
@@ -102,6 +112,30 @@
 	font-weight: bold;
 }
 
+@media only screen and (min-width: 768px)  {
+	.training-header, .training-header strong {
+		font-size: 45px;
+	}
+
+	.training-content {
+		width: 650px;
+	}
+
+	.training-input-group button {
+		font-size: 30px;
+		width: 150px;
+		margin: 35px 0px;
+	}
+
+	.training-control-group button {
+		font-size: 20px;
+		width: 150px;
+	}
+}
+
+@media only screen and (min-width: 1024px)  {}
+
+/*
 @media screen and (max-width: 500px) {
 	.training-container {
 		min-height: 100vh;
@@ -110,4 +144,4 @@
 	.training-content {
 		width: 350px;
 	}
-}
+} */

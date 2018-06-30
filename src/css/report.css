@@ -1,5 +1,5 @@
 .report-item {
-	padding: 20px 20px;
+	padding: 20px 0px;
 	text-align: center;
 	list-style: none;
 	margin-bottom: 10px;
@@ -13,3 +13,8 @@
 .report-question {
 	border-right: solid grey 2px;
 }
+
+
+@media only screen and (min-width: 768px)  {}
+
+@media only screen and (min-width: 1024px)  {}
