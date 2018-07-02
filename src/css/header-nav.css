@@ -1,6 +1,6 @@
 .header-bar {
 	display: flex;
-	position: fixed;
+	/* position: fixed; */
 	padding: 20px 20px;
 	justify-content: space-between;
 	background-color: #3f51b5;

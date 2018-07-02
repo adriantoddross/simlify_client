@@ -1,6 +1,6 @@
 .training-container {
 	/* width: 100vw; */
-	margin-top: 75px;
+	/* margin-top: 75px; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -24,6 +24,10 @@
 	font-size: 35px;
 	text-align: center;
 	width: 100%;
+}
+
+.training-header p {
+	margin: 0;
 }
 
 .training-header strong {
