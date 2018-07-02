@@ -21,14 +21,14 @@
 }
 
 .training-header {
-	font-size: 30px;
+	font-size: 35px;
 	text-align: center;
 	width: 100%;
 }
 
 .training-header strong {
 	font-family: "Cabin Sketch";
-	font-size: 25px;
+	font-size: 35px;
 	font-weight: bold;
 }
 
@@ -52,7 +52,9 @@
 	border-radius: 5px;
 	color: rgba(255, 255, 255, 0.849);
 	font-weight: 500;
-	font-size: 20px;
+	font-size: 30px;
+	width: 200px;
+	height: 50px;
 }
 .training-input-group button:hover {
 	background-color: #3f51b5;
@@ -114,11 +116,11 @@
 
 @media only screen and (min-width: 768px)  {
 	.training-header, .training-header strong {
-		font-size: 45px;
+		font-size: 55px;
 	}
 
 	.training-content {
-		width: 650px;
+		width: 100%;
 	}
 
 	.training-input-group button {
