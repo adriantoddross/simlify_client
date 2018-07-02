@@ -114,7 +114,7 @@ export class Trainning extends React.Component {
 									<button onClick={e => this.handleNewQuestionSet(e)}>Start new session</button>
 									<hr />
 									<button className="red" onClick={e => this.handleRedirect(e)}>
-										Go Back
+										Go to dashboard
 									</button>
 								</div>
 							</Dialog>
