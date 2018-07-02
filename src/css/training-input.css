@@ -17,19 +17,23 @@
 	text-align: center;
 }
 
+.training-body {
+	text-align: center;
+	font-size: 30px;
+}
+
 .training-input input:disabled {
 	display: none;
 }
 
 @media only screen and (min-width: 768px)  {
 
-	.training-input {
-		padding: 50px 0px;
+	.training-input input {
+		font-size: 40px;
+		height: 100px;
+		width: 100%;
 	}
 
-	.training-input input{
-		width: 300px;
-	}
 }
 
 @media only screen and (min-width: 1024px)  {

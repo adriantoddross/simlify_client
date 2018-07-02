@@ -73,14 +73,13 @@ export class Trainning extends React.Component {
 			if (feedback.status === "good") {
 				renderFeedback = (
 					<p>
-						<GoRocket color={"green"} /> Horray !
+						<GoRocket color={"green"} /> Correct! Keep up the good work!
 					</p>
 				)
 			} else {
 				renderFeedback = (
 					<p className="training-feedback">
-						<GoX color={"red"} size={24} /> You got it wrong! It's
-						<span> " {feedback.correctAnswer} " </span>
+						<GoX color={"red"} size={24} /> Incorrect. It means <span>"{feedback.correctAnswer}". </span>
 					</p>
 				)
 			}
@@ -145,7 +144,7 @@ export class Trainning extends React.Component {
 							{renderBtn}
 						</form>
 						<div className="training-control-group">
-							<button onClick={e => this.handleFetchReport(e)}>End session</button>
+							<button onClick={e => this.handleFetchReport(e)}>End Session</button>
 						</div>
 					</section>
 				</div>
