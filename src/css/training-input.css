@@ -5,9 +5,16 @@
 }
 
 .training-input input {
-	border: 0;
+	/* border: 0; */
 	outline: 0;
-	border-bottom: solid #1976d2 3px;
+	border: solid #1976d2 3px;
+	background: lightblue;
+
+	font-weight: bold;
+	font-size: 25px;
+	height: 75px;
+	width: 200px;
+	text-align: center;
 }
 
 .training-input input:disabled {
@@ -25,4 +32,6 @@
 	}
 }
 
-@media only screen and (min-width: 1024px)  {}
+@media only screen and (min-width: 1024px)  {
+
+}
