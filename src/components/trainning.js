@@ -9,12 +9,7 @@ import Report from "./report"
 import GoRocket from "react-icons/lib/go/rocket"
 import GoX from "react-icons/lib/go/x"
 import "../css/trainning.css"
-import MediaQuery from "react-responsive"
 
-const customStyle = {
-	width: "480px",
-	height: "700px"
-}
 export class Trainning extends React.Component {
 	constructor(props) {
 		super(props)
@@ -105,22 +100,25 @@ export class Trainning extends React.Component {
 
 		return (
 			<div className="training-container">
-				<MediaQuery maxDeviceWidth={500}>
-					{matches => {
-						return (
-							<Dialog modal={true} open={this.state.open} contentStyle={matches ? {} : customStyle}>
-								<Report />
-								<div className="report-btn">
-									<button onClick={e => this.handleNewQuestionSet(e)}>Start new session</button>
-									<hr />
-									<button className="red" onClick={e => this.handleRedirect(e)}>
-										Go to dashboard
-									</button>
-								</div>
-							</Dialog>
-						)
-					}}
-				</MediaQuery>
+				<Dialog modal={true} open={this.state.open}
+					autoDetectWindowHeight={true}
+					autoScrollBodyContent={true}
+					repositionOnUpdate={true}
+					contentStyle={{
+						width: '90%',
+						height: '90%'
+					}
+					}
+				>
+					<Report />
+					<div className="report-btn">
+						<button onClick={e => this.handleNewQuestionSet(e)}>Start new session</button>
+						<hr />
+						<button className="red" onClick={e => this.handleRedirect(e)}>
+							Go to dashboard
+						</button>
+					</div>
+				</Dialog>
 
 				<div className="training-content animated fadeIn">
 					<header className="training-header">
